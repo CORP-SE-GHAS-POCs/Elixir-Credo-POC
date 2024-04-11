@@ -6,6 +6,7 @@ Potion Shop is an intentionally vulnerable Elixir/Phoenix application, for teach
 
 **Warning** - Do not deploy this application in your production environment. Attackers can exploit Potion Shop to gain access to the underlying server, then use this access to further compromise your network. 
 
+## This code is cloned from Pluralsight public github repo focusd on security vulnerabilities.
 
 ## Setup 
 
