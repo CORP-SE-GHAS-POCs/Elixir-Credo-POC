@@ -24,6 +24,9 @@ source ~/.bashrc
 
 Or install Elixir using homebrew - brew install elixir
 
+Important points
+Credo task must be added to mix deps do array. - Its already there but when you explain to customers, its important to share so they dont only copy the workflow but add this required task.
+
 ```
 Elixir "~> 1.13"
 Phoenix "~> 1.5.15"
