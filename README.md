@@ -11,6 +11,19 @@ Potion Shop is an intentionally vulnerable Elixir/Phoenix application, for teach
 
 This guide assumes you have Erlang and Elixir running locally. See [Installing Elixir and Erlang With ASDF](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf) if you need help with this step.
 
+If Brew is missing install Brew
+First, you need to install some dependencies. Open your terminal and run:
+Run - sudo apt-get install build-essential curl file git
+
+Once the dependencies are installed, you can install Linuxbrew using the following command:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+After the installation is complete, you need to add Linuxbrew to your environment variables. You can do this by adding the following lines to your .bashrc or .zshrc file:
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+source ~/.bashrc
+
+Or install Elixir using homebrew - brew install elixir
+
 ```
 Elixir "~> 1.13"
 Phoenix "~> 1.5.15"
