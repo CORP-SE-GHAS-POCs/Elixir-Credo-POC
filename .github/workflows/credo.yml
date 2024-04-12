@@ -40,8 +40,10 @@ jobs:
       run: mix compile
     - name: credo-scan
       run: mix credo --format=sarif | tee credo_output.sarif
+      
     - name: upload sarif
       uses: github/codeql-action/upload-sarif@v3
+      continue-on-error: false
       with:
         # Path to SARIF file relative to the root of the repository
         sarif_file: credo_output.sarif
