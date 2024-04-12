@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Elixir CI
 
 on:
@@ -10,16 +5,15 @@ on:
   pull_request:
     branches: [ "master" ]
   push:
-    branches: [ "master" ]
+    branches: [ "master"]
 
 permissions:
   contents: read
 
 jobs:
-  Security-Scan:
+  credo-scan:
     permissions:
       contents: read
-      security-events: write
       actions: read
       
     name: Build and test
@@ -40,11 +34,31 @@ jobs:
       run: mix compile
     - name: credo-scan
       run: mix credo --format=sarif | tee credo_output.sarif
+    - name: Upload SARIF file
+      uses: actions/upload-artifact@v4
+      with:
+        name: credo-sarif
+        path: credo_output.sarif
+
+  upload-sarif:
+    needs: credo-scan
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
       
-    - name: upload sarif
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: credo-sarif
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: upload sarif file
       uses: github/codeql-action/upload-sarif@v3
-      continue-on-error: false
       with:
         # Path to SARIF file relative to the root of the repository
-        sarif_file: credo_output.sarif
+        sarif_file: ./credo_output.sarif
         token: ${{ secrets.GITHUB_TOKEN }}
