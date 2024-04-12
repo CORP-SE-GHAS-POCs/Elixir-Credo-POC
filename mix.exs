@@ -53,7 +53,7 @@ defmodule Carafe.MixProject do
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
       {:paginator, "~> 0.6.0"},
       {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      #{:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 
